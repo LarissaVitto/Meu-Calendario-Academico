@@ -1,0 +1,7 @@
+#nome=Sistemas Operacionais
+#professor=Profa. Camila Furtado
+codigo_atv;titulo;tipo;data_hora;descricao
+SOPE-01;Trabalho — Escalonamento de processos;Trabalho;23/11/2026 17:00;Simulador de algoritmos de escalonamento.
+SOPE-02;Prova 1 — Processos e threads;Prova;02/12/2026 19:00;Processos, threads, sincronização e deadlock.
+SOPE-03;Trabalho — Gerenciador de memória;Trabalho;09/12/2026 17:00;Simulador de paginação e substituição de páginas.
+SOPE-04;Prova 2 — Memória e arquivos;Prova;16/12/2026 19:00;Gerenciamento de memória e sistemas de arquivos.

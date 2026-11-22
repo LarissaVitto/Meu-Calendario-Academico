@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu Calendário Acadêmico</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('mca_tema'); } catch (e) {}
+      if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.setAttribute('data-bs-theme', t);
+    })();
+  </script>
+</head>
+<body>
+
+<!-- ============ TELA DE LOGIN (HU1) ============ -->
+<section id="login" class="login-wrap d-none">
+  <button class="icon-btn theme-login js-tema" type="button" aria-label="Alternar modo claro/escuro"><i class="bi bi-moon-stars"></i></button>
+  <div class="login-card">
+    <div class="brand mb-4">
+      <span class="brand-logo"><i class="bi bi-calendar2-check"></i></span>
+      <span class="brand-name">Meu Calendário<br>Acadêmico</span>
+    </div>
+    <h1 class="login-title">Olá de novo 👋</h1>
+    <p class="text-muted mb-4">Entre com suas credenciais para ver suas provas, trabalhos e entregas em um só lugar.</p>
+
+    <form id="loginForm" novalidate>
+      <label class="form-label" for="loginEmail">E-mail institucional (@utfpr.edu.br ou @alunos.utfpr.edu.br)</label>
+      <input id="loginEmail" type="email" class="form-control form-control-lg mb-3" placeholder="a1234567@alunos.utfpr.edu.br" autocomplete="username">
+
+      <label class="form-label" for="loginSenha">Senha</label>
+      <div class="input-group input-group-lg mb-2">
+        <input id="loginSenha" type="password" class="form-control" placeholder="••••••••" autocomplete="current-password">
+        <button class="btn btn-toggle-pass" type="button" id="togglePass" aria-label="Mostrar senha"><i class="bi bi-eye"></i></button>
+      </div>
+      <div id="loginErro" class="text-danger small mb-3 d-none"></div>
+
+      <button class="btn btn-primary btn-lg w-100 mt-3" type="submit">Entrar</button>
+    </form>
+    <p class="small text-muted mt-4 mb-0"><i class="bi bi-info-circle"></i> Use o e-mail institucional e a senha da sua conta no Meu Calendário Acadêmico.</p>
+  </div>
+  <div class="login-art d-none d-lg-flex">
+    <div class="art-card c1"><i class="bi bi-journal-check"></i> Prova de Arquitetura<small>em 3 dias</small></div>
+    <div class="art-card c2"><i class="bi bi-arrow-repeat"></i> Data alterada pelo professor<small>sincronizado</small></div>
+    <div class="art-card c3"><i class="bi bi-bell"></i> Lembrete de entrega<small>amanhã, 23:59</small></div>
+  </div>
+</section>
+
+<!-- ============ APLICAÇÃO ============ -->
+<div id="app" class="app d-none">
+
+  <aside class="sidebar">
+    <div class="brand mb-4">
+      <span class="brand-logo"><i class="bi bi-calendar2-check"></i></span>
+      <span class="brand-name">Meu Calendário<br>Acadêmico</span>
+    </div>
+
+    <nav class="nav-list" id="nav">
+      <button class="nav-item active" data-view="home"><i class="bi bi-house-door"></i><span>Início</span></button>
+      <button class="nav-item" data-view="calendario"><i class="bi bi-calendar3"></i><span>Calendário</span></button>
+      <button class="nav-item" data-view="disciplinas"><i class="bi bi-book"></i><span>Disciplinas</span></button>
+      <button class="nav-item" data-view="sync"><i class="bi bi-arrow-repeat"></i><span>Sincronização</span></button>
+      <button class="nav-item" data-view="notificacoes"><i class="bi bi-bell"></i><span>Avisos</span><b id="navBadge" class="nav-badge d-none">0</b></button>
+      <button class="nav-item" data-view="perfil"><i class="bi bi-person"></i><span>Perfil</span></button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <button class="btn btn-soft w-100" id="btnLogout"><i class="bi bi-box-arrow-left"></i> Sair</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="pageTitle" class="page-title">Início</h2>
+        <div id="pageSub" class="text-muted small"></div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        
+        <button class="icon-btn js-tema" type="button" aria-label="Alternar modo claro/escuro" title="Modo claro/escuro"><i class="bi bi-moon-stars"></i></button>
+        <button class="icon-btn position-relative" id="btnBell" aria-label="Avisos">
+          <i class="bi bi-bell"></i><span id="bellDot" class="bell-dot d-none"></span>
+        </button>
+        <div class="avatar" id="topAvatar">?</div>
+      </div>
+    </header>
+
+    <!-- INÍCIO -->
+    <section class="view" id="view-home"></section>
+
+    <!-- CALENDÁRIO (HU5, HU6, HU7) -->
+    <section class="view d-none" id="view-calendario">
+      <div class="card-soft mb-3">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-8">
+            <div class="filter-label">Disciplinas</div>
+            <div id="chipsDisc" class="chips"></div>
+          </div>
+          <div class="col-lg-4">
+            <div class="filter-label">Tipo de atividade</div>
+            <select id="filtroTipo" class="form-select"><option value="todos">Todos os tipos</option></select>
+            <div class="form-check form-switch mt-2">
+              <input class="form-check-input" type="checkbox" id="filtroConcluidas">
+              <label class="form-check-label small" for="filtroConcluidas">Ocultar concluídas</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-soft"><div id="calendar"></div></div>
+    </section>
+
+    <!-- DISCIPLINAS (HU3, HU4) -->
+    <section class="view d-none" id="view-disciplinas"></section>
+
+    <!-- SINCRONIZAÇÃO COM O MOODLE (HU8, HU9, HU10) -->
+    <section class="view d-none" id="view-sync"></section>
+
+    <!-- AVISOS (HU11, HU12) -->
+    <section class="view d-none" id="view-notificacoes"></section>
+
+    <!-- PERFIL (HU2) -->
+    <section class="view d-none" id="view-perfil"></section>
+  </main>
+</div>
+
+<!-- ============ MODAIS ============ -->
+<div class="modal fade" id="modalAtv" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" id="modalAtvBody"></div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalPdf" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content" id="modalPdfBody"></div>
+  </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="toast" class="toast align-items-center border-0" role="status" aria-live="polite">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMsg"></div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales-all.global.min.js"></script>
+<script src="js/pdf-importacao.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

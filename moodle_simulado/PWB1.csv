@@ -1,0 +1,7 @@
+#nome=Programação para Web 1
+#professor=Profa. Luíza Andrade
+codigo_atv;titulo;tipo;data_hora;descricao
+PWB1-01;Projeto front end — Sprint 1;Entrega;22/11/2026 23:59;HTML, CSS, Bootstrap e JavaScript.
+PWB1-02;Prova de JavaScript;Prova;03/12/2026 21:00;DOM, eventos, fetch e localStorage.
+PWB1-03;Quiz — Formulários e validação;Outro;10/12/2026 21:00;Questionário rápido sobre formulários e validação.
+PWB1-04;Entrega final — Sistema web;Entrega;17/12/2026 23:59;Sistema web completo, com front end e back end.
