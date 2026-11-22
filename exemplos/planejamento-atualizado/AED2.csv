@@ -1,7 +1,0 @@
-#nome=Algoritmos e Estrutura de Dados 2
-#professor=Prof. Otávio Brandão
-codigo_atv;titulo;tipo;data_hora;descricao
-AED2-01;Lista de exercícios — Árvores;Trabalho;26/11/2026 23:59;Árvores binárias de busca e percursos.
-AED2-02;Prova 1 — Estruturas não lineares;Prova;03/12/2026 19:00;Árvores, heaps e grafos básicos.
-AED2-03;Trabalho — Implementação de grafos;Trabalho;08/12/2026 23:59;Implementação de grafos com listas de adjacência.
-AED2-04;Prova 2 — Grafos e ordenação;Prova;17/12/2026 19:00;Grafos e algoritmos de ordenação.

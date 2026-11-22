@@ -1,8 +1,0 @@
-#nome=Arquitetura de Software
-#professor=Profa. Helena Carvalho
-codigo_atv;titulo;tipo;data_hora;descricao
-ARSW-01;Entrega 2 — Decisões Arquiteturais;Entrega;25/11/2026 23:59;Documento com estilos arquiteturais, justificativas e atributos de qualidade.
-ARSW-02;Prova 1 — Padrões e estilos;Prova;30/11/2026 19:00;Cliente-servidor, camadas, MVC e microsserviços.
-ARSW-03;Entrega 3 — Protótipo da arquitetura;Entrega;11/12/2026 23:59;Protótipo funcional da arquitetura proposta.
-ARSW-04;Prova 2 — Qualidade e decisões;Prova;18/12/2026 19:00;Atributos de qualidade e registro de decisões arquiteturais.
-ARSW-05;Reunião de orientação do projeto;Outro;24/11/2026 21:00;Alinhamento do projeto com a professora.

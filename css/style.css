@@ -287,3 +287,12 @@ body { transition: background .2s, color .2s; }
 .atv-item.done .atv-title { text-decoration: line-through; }
 #calendar .fc-event.done { opacity: .5; text-decoration: line-through; }
 .alert-success { background: var(--soft-green); color: var(--ok); border-color: transparent; }
+
+/* ===== Sincronização com o Moodle e novos tipos de aviso ===== */
+.n-nova { background: var(--soft-green); color: var(--ok); }
+.n-removida { background: var(--soft-red); color: var(--danger); }
+.sync-ico.warn { background: var(--soft-amber); color: var(--amber); }
+.sync-run { border: 1px solid var(--line); border-radius: 14px; padding: .8rem 1rem; margin-bottom: .6rem; background: var(--panel); }
+.sync-run .sync-sub { font-size: .8rem; color: var(--muted); }
+.hist-item { border-left: 3px solid var(--panel-border); padding: .15rem 0 .15rem .75rem; margin-bottom: .5rem; }
+.hist-item small { display: block; color: var(--muted); font-size: .72rem; }

@@ -45,7 +45,7 @@
 
       <button class="btn btn-primary btn-lg w-100 mt-3" type="submit">Entrar</button>
     </form>
-    <p class="small text-muted mt-4 mb-0"><i class="bi bi-info-circle"></i> Protótipo de front end: use um e-mail institucional da UTFPR e uma senha com 4+ caracteres. Você entrará com um perfil de exemplo.</p>
+    <p class="small text-muted mt-4 mb-0"><i class="bi bi-info-circle"></i> Use o e-mail institucional e a senha da sua conta no Meu Calendário Acadêmico.</p>
   </div>
   <div class="login-art d-none d-lg-flex">
     <div class="art-card c1"><i class="bi bi-journal-check"></i> Prova de Arquitetura<small>em 3 dias</small></div>
@@ -84,7 +84,7 @@
         <div id="pageSub" class="text-muted small"></div>
       </div>
       <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-primary" id="btnNovaAtv"><i class="bi bi-plus-lg"></i> <span class="d-none d-sm-inline">Nova atividade</span></button>
+        
         <button class="icon-btn js-tema" type="button" aria-label="Alternar modo claro/escuro" title="Modo claro/escuro"><i class="bi bi-moon-stars"></i></button>
         <button class="icon-btn position-relative" id="btnBell" aria-label="Avisos">
           <i class="bi bi-bell"></i><span id="bellDot" class="bell-dot d-none"></span>
@@ -106,13 +106,7 @@
           </div>
           <div class="col-lg-4">
             <div class="filter-label">Tipo de atividade</div>
-            <select id="filtroTipo" class="form-select">
-              <option value="todos">Todos os tipos</option>
-              <option>Prova</option>
-              <option>Trabalho</option>
-              <option>Entrega</option>
-              <option>Outro</option>
-            </select>
+            <select id="filtroTipo" class="form-select"><option value="todos">Todos os tipos</option></select>
             <div class="form-check form-switch mt-2">
               <input class="form-check-input" type="checkbox" id="filtroConcluidas">
               <label class="form-check-label small" for="filtroConcluidas">Ocultar concluídas</label>
@@ -126,7 +120,7 @@
     <!-- DISCIPLINAS (HU3, HU4) -->
     <section class="view d-none" id="view-disciplinas"></section>
 
-    <!-- SINCRONIZAÇÃO (HU8, HU9, HU10) -->
+    <!-- SINCRONIZAÇÃO COM O MOODLE (HU8, HU9, HU10) -->
     <section class="view d-none" id="view-sync"></section>
 
     <!-- AVISOS (HU11, HU12) -->
@@ -144,41 +138,9 @@
   </div>
 </div>
 
-<div class="modal fade" id="modalNova" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" id="formNova">
-      <div class="modal-header border-0 pb-0">
-        <h5 class="modal-title fw-bold">Nova atividade</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <label class="form-label">Disciplina</label>
-        <select id="novaDisc" class="form-select mb-3" required></select>
-
-        <label class="form-label">Título</label>
-        <input id="novaTitulo" class="form-control mb-3" placeholder="Ex.: Lista de exercícios 5" required>
-
-        <div class="row g-3 mb-3">
-          <div class="col-6">
-            <label class="form-label">Tipo</label>
-            <select id="novaTipo" class="form-select">
-              <option>Prova</option><option selected>Trabalho</option><option>Entrega</option><option>Outro</option>
-            </select>
-          </div>
-          <div class="col-6">
-            <label class="form-label">Data e hora</label>
-            <input id="novaData" type="datetime-local" class="form-control" required>
-          </div>
-        </div>
-
-        <label class="form-label">Descrição (opcional)</label>
-        <textarea id="novaDesc" class="form-control" rows="3" placeholder="Orientações do planejamento..."></textarea>
-      </div>
-      <div class="modal-footer border-0 pt-0">
-        <button type="button" class="btn btn-soft" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-      </div>
-    </form>
+<div class="modal fade" id="modalPdf" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content" id="modalPdfBody"></div>
   </div>
 </div>
 
@@ -193,9 +155,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/locales-all.global.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="js/data.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/locales-all.global.min.js"></script>
+<script src="js/pdf-importacao.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
